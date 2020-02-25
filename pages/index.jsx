@@ -1,8 +1,10 @@
+import MainLayout from "../layouts/MainLayout";
+
 const Index = () => {
   return (
-    <div>
+    <MainLayout>
       <p>Hello Next.js</p>
-    </div>
+    </MainLayout>
   );
 };
 

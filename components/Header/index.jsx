@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import {
   Wrapper,
   LeftSide,
@@ -8,17 +8,17 @@ import {
   Item,
   FlexContainerNav,
   PhoneIcon,
-  MobileText,
-} from "./Views"
-import Container from "react-bootstrap/Container"
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
+  MobileText
+} from "../Header/Views";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const Header = () => (
   <Container>
     <Row>
       <Wrapper>
-        <div className={'col-lg-1'}>
+        <div className={"col-lg-1"}>
           <LeftSide>
             <div>АТЕЛЬЄ СТОЛЯРНИХ ВИРОБІВ</div>
             <div>«ФАСАД»</div>
@@ -44,6 +44,6 @@ const Header = () => (
     </Row>
     <Line />
   </Container>
-)
+);
 
-export default Header
+export default Header;

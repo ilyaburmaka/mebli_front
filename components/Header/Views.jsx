@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import colors from "../../../themes/colors"
+import colors from "../../themes/colors"
 
 const Wrapper = styled.div`
   background-color: rgba(97, 30, 0, 0.1);
@@ -27,7 +27,6 @@ const FlexContainerNav = styled.div`
 `
 const LeftSide = styled.div`
   height: 80px;
-  width: 100%;
   background-color: ${colors.darkRed100};
   display: flex;
   flex-direction: column;
