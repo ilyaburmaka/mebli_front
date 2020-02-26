@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   Wrapper,
   LeftSide,
@@ -9,41 +9,38 @@ import {
   FlexContainerNav,
   PhoneIcon,
   MobileText
-} from "../Header/Views";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+} from '../Header/Views'
+import styled from 'styled-components'
+
+const WrapperContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  background-color: #efe4dd;
+  justify-content: center;
+`
 
 const Header = () => (
-  <Container>
-    <Row>
-      <Wrapper>
-        <div className={"col-lg-1"}>
-          <LeftSide>
-            <div>АТЕЛЬЄ СТОЛЯРНИХ ВИРОБІВ</div>
-            <div>«ФАСАД»</div>
-          </LeftSide>
-        </div>
-        <Col>
-          <FlexContainerNav>
-            <Item isActive>ВИРОБНИЦТВО</Item>
-            <Item>КАТАЛОГ</Item>
-            <Item>ВІДГУКИ</Item>
-          </FlexContainerNav>
-        </Col>
-        <Col>
-          <RightSide>
-            <PhoneIcon src={"phone.png"} />
-            <MobileText>096 721 65 38</MobileText>
-            <MenuItem isActive>УКР</MenuItem>
-            <MenuItem>РУС</MenuItem>
-            <MenuItem>ENG</MenuItem>
-          </RightSide>
-        </Col>
-      </Wrapper>
-    </Row>
+  <>
+    <WrapperContainer>
+      <LeftSide>
+        <div>АТЕЛЬЄ СТОЛЯРНИХ ВИРОБІВ</div>
+        <div>«ФАСАД»</div>
+      </LeftSide>
+      <FlexContainerNav>
+        <Item isActive>виробництво</Item>
+        <Item>каталог</Item>
+        <Item>відгуки</Item>
+      </FlexContainerNav>
+      <RightSide>
+        <PhoneIcon src={'/static/phone.png'} />
+        <MobileText>096 721 65 38</MobileText>
+        <MenuItem isActive>УКР</MenuItem>
+        <MenuItem>РУС</MenuItem>
+        <MenuItem>ENG</MenuItem>
+      </RightSide>
+    </WrapperContainer>
     <Line />
-  </Container>
-);
+  </>
+)
 
-export default Header;
+export default Header

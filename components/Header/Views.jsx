@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import colors from "../../themes/colors"
+import styled from 'styled-components'
+import colors from '../../themes/colors'
 
 const Wrapper = styled.div`
   background-color: rgba(97, 30, 0, 0.1);
@@ -8,7 +8,7 @@ const Wrapper = styled.div`
 `
 
 const Item = styled.span`
-  opacity: ${({ isActive }) => (isActive ? "0.6" : "1.0")};
+  opacity: ${({ isActive }) => (isActive ? '0.6' : '1.0')};
   color: #231f20;
   font-size: 12px;
   font-weight: 400;
@@ -17,35 +17,42 @@ const Item = styled.span`
 
 const FlexContainerNav = styled.div`
   display: flex;
-  height: 100%;
   align-items: center;
-  margin-left: 50px;
+  justify-content: center;
+  height: auto;
+  width: 310px;
+  text-transform: uppercase;
 
   ${Item}:not(:first-child) {
     margin-left: 15px;
   }
 `
+
 const LeftSide = styled.div`
+  width: 295px;
   height: 80px;
+  align-items: flex-start;
+  padding: 0 25px;
   background-color: ${colors.darkRed100};
   display: flex;
   flex-direction: column;
   color: #efe4dd;
   font-size: 16px;
   font-weight: 400;
-  padding-left: 10%;
   justify-content: center;
 `
 
 const MenuItem = styled.span`
-  opacity: ${({ isActive }) => (isActive ? "0.6" : "1.0")};
+  opacity: ${({ isActive }) => (isActive ? '0.6' : '1.0')};
 `
 
 const RightSide = styled.div`
   display: flex;
-  height: 100%;
   align-items: center;
-  margin-left: 60px;
+  justify-content: center;
+  height: auto;
+  width: 310px;
+
   ${MenuItem} {
     margin-left: 12px;
     color: ${colors.darkRed200};
@@ -73,14 +80,4 @@ const Line = styled.div`
   background-color: ${colors.darkRed100};
 `
 
-export {
-  Wrapper,
-  LeftSide,
-  RightSide,
-  Line,
-  Item,
-  MenuItem,
-  FlexContainerNav,
-  PhoneIcon,
-  MobileText,
-}
+export { Wrapper, LeftSide, RightSide, Line, Item, MenuItem, FlexContainerNav, PhoneIcon, MobileText }

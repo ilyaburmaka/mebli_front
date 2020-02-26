@@ -43,12 +43,6 @@ export default class MyDocument extends Document {
             />
           </Helmet>
           <link
-            rel="shortcut icon"
-            type="image/ico"
-            href="/static/favicon.ico"
-          />
-          <link href="https://rsms.me/inter/inter-ui.css" rel="stylesheet" />
-          <link
             rel="stylesheet"
             type="text/css"
             href="https://unpkg.com/nprogress@0.2.0/nprogress.css"
