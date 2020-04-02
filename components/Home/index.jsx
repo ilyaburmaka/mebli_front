@@ -1,22 +1,26 @@
-import React from "react"
-import styled from "styled-components"
-import colors from "../../../themes/colors"
+import React from 'react'
+import styled from 'styled-components'
 
 const WrapperPicture = styled.div`
   width: 100%;
   display: flex;
+  height: 545px;
+  background-image: url('/static/header_index.png');
+  background-position: -23px;
 `
+
 const WrapperContent = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
   margin-top: 35px;
   margin-bottom: 60px;
+  max-width: 920px;
 `
 const Title = styled.span`
   font-size: 20px;
   text-transform: uppercase;
-  color: ${colors.darkRed300};
+  color: #793000;
 `
 
 const EntityText = styled.p`
@@ -26,12 +30,7 @@ const Line = styled.div`
   margin-top: 23px;
   width: 332px;
   height: 2px;
-  background-color: ${colors.darkRed300};
-`
-
-const EntityImage = styled.img`
-  height: 545px;
-  width: 100%;
+  background-color: #793000;
 `
 
 const ImageExampleProd = styled.img`
@@ -44,43 +43,44 @@ const WrapperImage = styled.div`
     margin-left: 20px;
   }
 `
+
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`
 const Home = () => (
-  <React.Fragment>
-    <WrapperPicture>
-      <EntityImage src="header_index.png" />
-    </WrapperPicture>
+  <div
+    style={{ width: '100%', justifyContent: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+  >
+    <WrapperPicture />
     <WrapperContent>
       <Title>Майстерня</Title>
       <Line />
       <div>
-        <EntityText>
-          Можна виділити кілька переваг виготовлення меблів своїми руками:
-          економія грошових коштів можливість виготовити меблі, які
-          відповідатимуть всім вимогам і побажанням господарів можливість
-          довести самому собі, який я молодець самі незвичайні ідеї можна
-          втілити в життя. Сьогодні знайти матеріали з приводу того, як зробити
-          меблі своїми руками нескладно. Випускається спеціальна література,
-          багато корисної інформації є в інтернеті, можна подивитися не тільки
-          схеми, креслення та інструкції, а й навіть відео. Якщо у людини лежить
-          душа до такої справи, то навчитися буде нескладно. Можна виділити
-          кілька переваг виготовлення меблів своїми руками
-        </EntityText>
-        <EntityText>
-          Можна виділити кілька переваг виготовлення меблів своїми руками:
-          економія грошових коштів можливість виготовити меблі, які
-          відповідатимуть всім вимогам і побажанням господарів можливість
-          довести самому собі, який я молодець самі незвичайні ідеї можна
-          втілити в життя. Сьогодні знайти матеріали з приводу того, як зробити
-          меблі своїми руками нескладно. Випускається спеціальна література,
-          багато корисної інформації є в інтернеті, можна подивитися не тільки
-          схеми, креслення та інструкції, а й навіть відео. Якщо у людини лежить
-          душа до такої справи, то навчитися буде нескладно.
-        </EntityText>
+        <TextWrapper>
+          <EntityText>
+            Можна виділити кілька переваг виготовлення меблів своїми руками: економія грошових коштів можливість
+            виготовити меблі, які відповідатимуть всім вимогам і побажанням господарів можливість довести самому собі,
+            який я молодець самі незвичайні ідеї можна втілити в життя. Сьогодні знайти матеріали з приводу того, як
+            зробити меблі своїми руками нескладно. Випускається спеціальна література, багато корисної інформації є в
+            інтернеті, можна подивитися не тільки схеми, креслення та інструкції, а й навіть відео. Якщо у людини лежить
+            душа до такої справи, то навчитися буде нескладно. Можна виділити кілька переваг виготовлення меблів своїми
+            руками
+          </EntityText>
+          <EntityText>
+            Можна виділити кілька переваг виготовлення меблів своїми руками: економія грошових коштів можливість
+            виготовити меблі, які відповідатимуть всім вимогам і побажанням господарів можливість довести самому собі,
+            який я молодець самі незвичайні ідеї можна втілити в життя. Сьогодні знайти матеріали з приводу того, як
+            зробити меблі своїми руками нескладно. Випускається спеціальна література, багато корисної інформації є в
+            інтернеті, можна подивитися не тільки схеми, креслення та інструкції, а й навіть відео. Якщо у людини лежить
+            душа до такої справи, то навчитися буде нескладно.
+          </EntityText>
+        </TextWrapper>
         <WrapperImage>
-          <ImageExampleProd src="img_square.png" />
-          <ImageExampleProd src="img_square.png" />
-          <ImageExampleProd src="img_square.png" />
-          <ImageExampleProd src="img_square.png" />
+          <ImageExampleProd src='/static/img_square.png' />
+          <ImageExampleProd src='/static/img_square.png' />
+          <ImageExampleProd src='/static/img_square.png' />
+          <ImageExampleProd src='/static/img_square.png' />
         </WrapperImage>
       </div>
     </WrapperContent>
@@ -88,7 +88,7 @@ const Home = () => (
       <Title>Галерея</Title>
       <Line />
     </WrapperContent>
-  </React.Fragment>
+  </div>
 )
 
 export default Home

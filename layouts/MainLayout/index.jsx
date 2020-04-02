@@ -1,13 +1,17 @@
-import * as React from "react";
-import Header from "../../components/Header";
+import * as React from 'react'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
- const MainLayout = ({ children }) => {
+const MainLayout = ({ children }) => {
   return (
     <div>
-        <Header/>
-      {children}
+      <Header />
+      <div style={{ minHeight: 'calc(100vh - 369px)', width: '100%', display: 'flex', justifyContent: 'center' }}>
+        {children}
+      </div>
+      <Footer />
     </div>
-  );
-};
+  )
+}
 
- export default MainLayout
+export default MainLayout
