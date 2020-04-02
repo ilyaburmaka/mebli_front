@@ -26,10 +26,14 @@ const FlexContainerNav = styled.div`
   ${Item}:not(:first-child) {
     margin-left: 15px;
   }
+
+  @media (max-width: 1023px) {
+    display: none;
+  }
 `
 
 const LeftSide = styled.div`
-  width: 295px;
+  width: 305px;
   height: 80px;
   align-items: flex-start;
   padding: 0 25px;
@@ -43,6 +47,11 @@ const LeftSide = styled.div`
 `
 
 const MenuItem = styled.span`
+  margin-left: 12px;
+  color: ${colors.darkRed200};
+  font-size: 10px;
+  font-weight: 400;
+  cursor: pointer;
   opacity: ${({ isActive }) => (isActive ? '0.6' : '1.0')};
 `
 
@@ -52,13 +61,8 @@ const RightSide = styled.div`
   justify-content: center;
   height: auto;
   width: 310px;
-
-  ${MenuItem} {
-    margin-left: 12px;
-    color: ${colors.darkRed200};
-    font-size: 10px;
-    font-weight: 400;
-    cursor: pointer;
+   @media (max-width: 1023px) {
+    display: none;
   }
 `
 

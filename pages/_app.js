@@ -2,6 +2,7 @@ import App from 'next/app'
 import React from 'react'
 // libs
 import { css, createGlobalStyle } from 'styled-components'
+import CurrentProvider from '../contexts/currentContext'
 // styles
 
 const libsStyles = css``
@@ -23,6 +24,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
   }
+    @font-face {
+        font-family: 'MyriadPro';
+        src: url("/themes/fonts/Myriard.otf");
+    }
 `
 
 class AppComponent extends App {
@@ -41,7 +46,9 @@ class AppComponent extends App {
     return (
       <>
         <GlobalStyle />
-        <Component {...pageProps} />
+        <CurrentProvider>
+          <Component {...pageProps} />
+        </CurrentProvider>
       </>
     )
   }

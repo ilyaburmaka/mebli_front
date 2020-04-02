@@ -6,7 +6,7 @@ const MainLayout = ({ children }) => {
   return (
     <div>
       <Header />
-      <div style={{ minHeight: 'calc(100vh - 369px)', width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <div style={{ minHeight: 'calc(100vh - 315px)', width: '100%', display: 'flex', justifyContent: 'center' }}>
         {children}
       </div>
       <Footer />
