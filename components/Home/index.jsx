@@ -1,13 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 import { CurrentContext } from '../../contexts/currentContext'
-
+import axios from 'axios'
 const WrapperPicture = styled.div`
   width: 100%;
   display: flex;
   height: 545px;
   background-image: url('/static/header_index.png');
-  background-position: -23px;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center 0px;
+  background-size: cover;
+  @media (max-width: 1024px) {
+    background-position: center;
+  }
 `
 
 const WrapperContent = styled.div`
@@ -16,7 +22,8 @@ const WrapperContent = styled.div`
   flex-direction: column;
   margin-top: 35px;
   margin-bottom: 60px;
-  max-width: 920px;
+  max-width: 926px;
+  width: 100%;
 `
 const Title = styled.span`
   font-size: 20px;
@@ -43,7 +50,7 @@ const ImageExampleProd = styled.img`
 const WrapperImage = styled.div`
   display: flex;
   margin-top: ${({ withPadding }) => withPadding && '20px'};
-
+  flex-wrap: wrap;
   img:not(:first-child) {
     margin-left: 20px;
   }
@@ -87,7 +94,8 @@ const home = {
 }
 const Home = () => {
   const { currentLang } = React.useContext(CurrentContext)
-
+  const data = axios.get('https://afternoon-scrubland-24663.herokuapp.com/tasks')
+  console.log(data)
   return (
     <div
       style={{
