@@ -59,7 +59,7 @@ const CurrentProvider = ({ children }) => {
     }
   }
 
-  const createSubcategory = async (photoId, variables) => {
+  const createSubcategory = async (variables, photoId) => {
     try {
       return await post(link + `subcategory`, {
         ...omit(variables, ['photo']),
