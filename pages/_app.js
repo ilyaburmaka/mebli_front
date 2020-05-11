@@ -4,7 +4,7 @@ import React from 'react'
 import { css, createGlobalStyle } from 'styled-components'
 import CurrentProvider from '../contexts/currentContext'
 // styles
-
+import CssBaseline from '@material-ui/core/CssBaseline'
 const libsStyles = css``
 
 const GlobalStyle = createGlobalStyle`
@@ -46,6 +46,7 @@ class AppComponent extends App {
     return (
       <>
         <GlobalStyle />
+        <CssBaseline/>
         <CurrentProvider>
           <Component {...pageProps} />
         </CurrentProvider>

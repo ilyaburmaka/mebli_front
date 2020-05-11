@@ -11,6 +11,7 @@ const WrapperPicture = styled.div`
   background-repeat: no-repeat;
   background-position: center 0px;
   background-size: cover;
+
   @media (max-width: 1024px) {
     background-position: center;
   }
