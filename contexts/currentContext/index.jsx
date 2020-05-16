@@ -15,8 +15,8 @@ const CurrentProvider = ({ children }) => {
       'Content-Type': 'multipart/form-data'
     }
   }
-  const link = 'http://localhost:3000/'
-  // const link = 'https://afternoon-scrubland-24663.herokuapp.com/'
+  // const link = 'http://localhost:3000/'
+  const link = 'https://afternoon-scrubland-24663.herokuapp.com/'
   React.useEffect(() => {
     setLang(Cookies.get('lang') || 'ua')
   }, [Cookies.get('lang')])

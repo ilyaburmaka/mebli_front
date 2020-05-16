@@ -6,7 +6,7 @@ import { omit } from 'lodash'
 
 const UpdateCategory = () => {
   const router = useRouter()
-  const { uploadFile, getOneSubCategory, updateSubcategory } = React.useContext(CurrentContext)
+  const {  getOneSubCategory, updateSubcategory } = React.useContext(CurrentContext)
   const [defaultValues, setValues] = React.useState(null)
 
   const loadData = async () => {
