@@ -1,5 +1,5 @@
 import * as React from 'react'
-import SuperAdminPage from '../../components/SuperAdmin'
+import SuperAdminPage from 'components/SuperAdmin'
 
 const MainSA = () => {
   return <SuperAdminPage />

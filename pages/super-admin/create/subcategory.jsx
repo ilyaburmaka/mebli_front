@@ -1,7 +1,7 @@
 import * as React from 'react'
-import CreateSubcategory from '../../../components/Subcategories/Create'
-import AdminLayout from '../../../layouts/AdminLayout'
-import { CurrentContext } from '../../../contexts/currentContext'
+import CreateSubcategory from 'components/Subcategories/Create'
+import AdminLayout from 'layouts/AdminLayout'
+import { CurrentContext } from 'contexts/currentContext'
 
 const lang = {
   ua: 'Створити Підкатегорію',

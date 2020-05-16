@@ -3,6 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import styled from 'styled-components'
 import { useFieldArray, useForm } from 'react-hook-form'
 import axios from 'axios'
+import { CurrentContext } from '../../../contexts/currentContext'
 
 const Row = styled.div`
   display: flex;
@@ -46,16 +47,42 @@ const Form = styled.form`
   justify-content: center;
 `
 
+const tableLanguage = {
+  ua: {
+    name: 'Назва Українською',
+    nameSecond: 'Назва Російскою',
+    nameThird: 'Назва Англійською',
+    descriptionSecond: 'К-сть підкатегорій',
+    countProd: 'К-сть продуктів'
+  },
+  ru: {
+    name: 'Имя по Украински',
+    nameSecond: 'Имя по Русском',
+    nameThird: 'Имя по Английскому',
+    description: 'К-сть підкатегорій',
+
+    countProd: 'К-во товаров'
+  },
+  en: {
+    name: 'Name in Ukrainian',
+    nameSecond: 'Name in Russian',
+    nameThird: 'Name in English',
+    description: 'К-сть підкатегорій',
+    countProd: 'Count of product'
+  }
+}
+
 const CreateCategoryForm = ({ onSubmit, defaultValues }) => {
   const [data, setData] = React.useState([])
   const [catId, setId] = React.useState(null)
   const { register, handleSubmit, errors, setValue, control, getValues } = useForm({ defaultValues })
+  const { currentLang } = React.useContext(CurrentContext)
 
   const getData = async () => {
     try {
       const token = localStorage.getItem('accessToken')
-      const response = await axios.get(`http://localhost:3000/category`, {}, { token })
-      setData(response.data)
+      // const response = await axios.get(`http://localhost:3000/category`, {}, { token })
+      // setData(response.data)
     } catch (e) {
       console.log('getData.error', e)
     }
@@ -65,8 +92,8 @@ const CreateCategoryForm = ({ onSubmit, defaultValues }) => {
     const dat1 = getValues()
     setId(dat1.categoryId)
   }
-  React.useEffect(async () => {
-    await getData()
+  React.useEffect(() => {
+    getData()
     const dat1 = getValues()
     console.log(dat1)
     setId(dat1.categoryId)
@@ -86,17 +113,17 @@ const CreateCategoryForm = ({ onSubmit, defaultValues }) => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Row>
-        <Label>Name</Label>
+        <Label>{tableLanguage[`${currentLang}`]?.name}</Label>
         <CustomInput name='name' type='text' ref={register({ required: true })} />
         {errors.name && <span>This field is required</span>}
       </Row>
       <Row>
-        <Label>Name Rus</Label>
+        <Label>{tableLanguage[`${currentLang}`]?.nameSecond}</Label>
         <CustomInput name='nameRu' type='text' ref={register({ required: true })} />
         {errors.nameRu && <span>This field is required</span>}
       </Row>
       <Row>
-        <Label>Name Eng</Label>
+        <Label>{tableLanguage[`${currentLang}`]?.nameThird}</Label>
         <CustomInput name='nameEn' type='text' ref={register({ required: true })} />
         {errors.nameEn && <span>This field is required</span>}
       </Row>

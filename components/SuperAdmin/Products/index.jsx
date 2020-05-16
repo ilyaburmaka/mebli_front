@@ -9,14 +9,14 @@ import Paper from '@material-ui/core/Paper'
 import axios from 'axios'
 import Router from 'next/router'
 
-const Categories = () => {
+const Products = () => {
   const [data, setData] = React.useState([])
 
   const getData = async () => {
     try {
       const token = localStorage.getItem('accessToken')
-      const response = await axios.get(`http://localhost:3000/category`, {}, { token })
-      setData(response.data)
+      // const response = await axios.get(`http://localhost:3000/category`, {}, { token })
+      // setData(response.data)
     } catch (e) {
       console.log('getData.error', e)
     }
@@ -47,14 +47,14 @@ const Categories = () => {
           <TableRow>
             <TableCell>№</TableCell>
             <TableCell>Name</TableCell>
-            <TableCell align='right'>Count Sub Categories</TableCell>
-            <TableCell align='right'>Count Products</TableCell>
+            <TableCell align='right'></TableCell>
+            <TableCell align='right'>Count Photo</TableCell>
             <TableCell align='right' />
             <TableCell align='right' />
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map(row => (
+          {data?.map(row => (
             <TableRow key={row.id}>
               <TableCell component='th' scope='row'>
                 {row.id}
@@ -76,4 +76,4 @@ const Categories = () => {
   )
 }
 
-export default Categories
+export default Products

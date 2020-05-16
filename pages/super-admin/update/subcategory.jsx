@@ -1,22 +1,22 @@
 import * as React from 'react'
-import CategoryUpdate from 'components/Categories/Update'
+import UpdateSubcategory from 'components/Subcategories/Update'
 import AdminLayout from 'layouts/AdminLayout'
 import { CurrentContext } from 'contexts/currentContext'
 
 const lang = {
-  ua: 'Оновити Категорію',
-  ru: 'Обновить Категорию',
-  en: 'Update Category'
+  ua: 'Оновити Підкатегорію',
+  ru: 'Обновить Подкатегорию',
+  en: 'Update Subcategory'
 }
 
-const CategoryUpdateSA = () => {
+const SubcategoryUpdateSA = () => {
   const { currentLang } = React.useContext(CurrentContext)
 
   return (
     <AdminLayout title={lang[`${currentLang}`]}>
-      <CategoryUpdate />
+      <UpdateSubcategory />
     </AdminLayout>
   )
 }
 
-export default CategoryUpdateSA
+export default SubcategoryUpdateSA

@@ -1,19 +1,11 @@
 import * as React from 'react'
-import { post } from 'axios'
-import Router from 'next/router'
 import CategoryForm from './Form'
+import { CurrentContext } from 'contexts/currentContext'
 
 const CreateCategory = () => {
-  const onSubmit = async data => {
-    try {
-      await post(`http://localhost:3000/category`, { ...data })
-      Router.push('/super-admin/categories')
-    } catch (error) {
-      console.log('error', error)
-    }
-  }
+  const { createCategory } = React.useContext(CurrentContext)
 
-  return <CategoryForm onSubmit={onSubmit} />
+  return <CategoryForm onSubmit={createCategory} />
 }
 
 export default CreateCategory

@@ -11,11 +11,17 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Router from 'next/router'
 import styled from 'styled-components'
 import { CurrentContext } from '../../contexts/currentContext'
-import { Item } from '../../components/Header/Views'
+import { MenuItem } from '../../components/Header/Views'
 
 const CloseImage = styled.img`
   width: 15px;
 `
+
+const Lang = styled.img`
+  width: 25px;
+  margin-right: 15px;
+`
+
 const lang = {
   ua: {
     category: {
@@ -28,7 +34,7 @@ const lang = {
     },
     product: {
       create: 'Створити Продукт',
-      list: 'Продукти'
+      list: 'Список Продуктів'
     },
     common: {
       logout: 'Вихід'
@@ -70,7 +76,7 @@ const lang = {
   }
 }
 const AdminLayout = ({ children, title }) => {
-  const { currentLang } = React.useContext(CurrentContext)
+  const { currentLang, onLogout, onLangClick } = React.useContext(CurrentContext)
   const [open, setOpen] = React.useState(false)
   const handleDrawerOpen = () => setOpen(true)
   const handleDrawerClose = () => setOpen(false)
@@ -78,7 +84,11 @@ const AdminLayout = ({ children, title }) => {
   return (
     <MuiThemeProvider>
       <div>
-        <AppBar title={title || 'Fasad'} onLeftIconButtonClick={() => handleDrawerOpen()} />
+        <AppBar title={title || 'Fasad'} onLeftIconButtonClick={() => handleDrawerOpen()}>
+          <Lang src={'/static/ukraine.svg'} onClick={() => onLangClick('ua')} />
+          <Lang src={'/static/russia.svg'} onClick={() => onLangClick('ru')} />
+          <Lang src={'/static/flag.svg'} onClick={() => onLangClick('en')} />
+        </AppBar>
         <Drawer variant='persistent' anchor='left' open={open}>
           <div>
             <IconButton onClick={handleDrawerClose}>
@@ -105,13 +115,18 @@ const AdminLayout = ({ children, title }) => {
           </List>
           <Divider />
           <List>
+            <ListItem button onClick={() => Router.push('/super-admin/products')}>
+              <ListItemText primary={lang[`${currentLang}`]?.product.list} />
+            </ListItem>
             <ListItem button onClick={() => Router.push('/super-admin/create/product')}>
               <ListItemText primary={lang[`${currentLang}`]?.product.create} />
             </ListItem>
           </List>
           <Divider />
           <List>
-            <ListItem button>{lang[`${currentLang}`]?.common.logout}</ListItem>
+            <ListItem button onClick={onLogout}>
+              {lang[`${currentLang}`]?.common.logout}
+            </ListItem>
           </List>
         </Drawer>
         <Grid container spacing={3}>

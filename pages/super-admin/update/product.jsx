@@ -1,12 +1,12 @@
 import * as React from 'react'
-import ProductCreate from 'components/Products/Create'
-import AdminLayout from 'layouts/AdminLayout'
+import ProductCreate from '../../../components/Products/Create'
+import AdminLayout from '../../../layouts/AdminLayout'
 import { CurrentContext } from '../../../contexts/currentContext'
 
 const lang = {
-  ua: 'Створити Продукт',
-  ru: 'Создать Товар',
-  en: 'Create Product'
+  ua: 'Оновити Продукт',
+  ru: 'Обновить Товар',
+  en: 'Update Product'
 }
 
 const ProductCreateSA = () => {

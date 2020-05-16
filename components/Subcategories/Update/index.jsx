@@ -1,34 +1,24 @@
 import * as React from 'react'
-import { get, post } from 'axios'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import CategoryForm from '../Create/Form'
+import { CurrentContext } from 'contexts/currentContext'
+import { omit } from 'lodash'
 
 const UpdateCategory = () => {
   const router = useRouter()
+  const { uploadFile, getOneSubCategory, updateSubcategory } = React.useContext(CurrentContext)
   const [defaultValues, setValues] = React.useState(null)
-  const loadOneCat = async () => {
-    const responce = await get(`http://localhost:3000/category/${router.query.id}`)
-    console.log(responce)
-    setValues({ ...responce.data })
+
+  const loadData = async () => {
+    const responsive = await getOneSubCategory(router.query.id)
+    setValues({ ...omit(responsive, ['photo']) })
   }
 
   React.useEffect(() => {
-    if (router.query.id) {
-      loadOneCat()
-    }
-  }, [router.query])
+    loadData()
+  }, [router])
 
-  const onSubmit = async data => {
-    try {
-      await post(`http://localhost:3000/category/update/${router.query.id}`, { ...data })
-      Router.push('/super-admin/categories')
-    } catch (error) {
-      if (401 === error.response.status) {
-        console.log('pizda')
-      }
-      console.log('error', error)
-    }
-  }
+  const onSubmit = async data => updateSubcategory(router.query.id, data)
 
   return <>{!!defaultValues && <CategoryForm onSubmit={onSubmit} defaultValues={{ ...defaultValues }} />}</>
 }

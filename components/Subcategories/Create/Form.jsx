@@ -46,19 +46,55 @@ const Form = styled.form`
   justify-content: center;
 `
 
+const style = {
+  margin: '15px 0px',
+  width: '100%'
+}
+
+const tableLanguage = {
+  ua: {
+    name: 'Назва Українською',
+    nameSecond: 'Назва Російскою',
+    nameThird: 'Назва Англійською',
+    reqMessage: "Це поле є обов'язковим",
+    file: 'Іконка',
+    category: 'Категорія',
+    btnName: 'Зберегти'
+  },
+  ru: {
+    name: 'Имя по Украински',
+    nameSecond: 'Имя по Русском',
+    nameThird: 'Имя по Английскому',
+    reqMessage: 'Поле долдно быть заполненым',
+    file: 'Иконка',
+    category: 'Категория',
+    btnName: 'Сохранить'
+  },
+  en: {
+    name: 'Name in Ukrainian',
+    nameSecond: 'Name in Russian',
+    nameThird: 'Name in English',
+    reqMessage: 'This field is required',
+    file: 'Photo',
+    category: 'Category Name',
+    btnName: 'Submit'
+  }
+}
+
 const CreateSubcategoryForm = ({ onSubmit, defaultValues }) => {
   const { register, handleSubmit, errors, setValue } = useForm({ defaultValues })
   const [data, setData] = React.useState([])
-  const { categories } = React.useContext(CurrentContext)
+  const { categories, currentLang } = React.useContext(CurrentContext)
 
   const getData = async () => {
-    const response = await categories()
+    const token = localStorage.getItem('accessToken')
+    const response = await categories(token)
     setData(response)
   }
 
   React.useEffect(() => {
     getData()
-  }, [])
+  }, [categories])
 
   const handleChange = event => {
     if (event && !!event.target) {
@@ -69,42 +105,39 @@ const CreateSubcategoryForm = ({ onSubmit, defaultValues }) => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Row>
-        <Label>Name</Label>
+        <Label>{tableLanguage[`${currentLang}`]?.name}</Label>
         <CustomInput name='name' type='text' ref={register({ required: true })} />
-        {errors.name?.type === 'required' && <span>This field is required</span>}
+        {errors.name?.type === 'required' && <span>{tableLanguage[`${currentLang}`]?.reqMessage}</span>}
       </Row>
       <Row>
-        <Label>Name Rus</Label>
+        <Label>{tableLanguage[`${currentLang}`]?.nameSecond}</Label>
         <CustomInput name='nameRu' type='text' ref={register({ required: true })} />
-        {errors.nameRu && <span>This field is required</span>}
+        {errors.nameRu && <span>{tableLanguage[`${currentLang}`]?.reqMessage}</span>}
       </Row>
       <Row>
-        <Label>Name Eng</Label>
+        <Label>{tableLanguage[`${currentLang}`]?.nameThird}</Label>
         <CustomInput name='nameEn' type='text' ref={register({ required: true })} />
-        {errors.nameEn && <span>This field is required</span>}
+        {errors.nameEn && <span>{tableLanguage[`${currentLang}`]?.reqMessage}</span>}
       </Row>
       <Row>
-        <Label>Type</Label>
-        <CustomSelect name='categoryId' ref={register({ required: true })}>
-          {data.map(category => (
-            <option value={category.id}>{category.name}</option>
+        <Label>{tableLanguage[`${currentLang}`]?.category}</Label>
+        <CustomSelect name='categoryId' ref={register()}>
+          {data?.map(({ name, id }) => (
+            <option key={name + id} value={id}>
+              {name}
+            </option>
           ))}
         </CustomSelect>
-        {errors.type && <span>This field is required</span>}
       </Row>
       <Row>
-        <Label>Files</Label>
+        <Label>{tableLanguage[`${currentLang}`]?.file}</Label>
         <div>
           <input name={`photo`} type='file' onChange={handleChange} ref={register()} />
         </div>
       </Row>
-      <RaisedButton label='Submit' type='submit' primary={true} style={style} />
+      <RaisedButton label={tableLanguage[`${currentLang}`]?.btnName} type='submit' primary={true} style={style} />
     </Form>
   )
-}
-const style = {
-  margin: '15px 0px',
-  width: '100%'
 }
 
 export default CreateSubcategoryForm
