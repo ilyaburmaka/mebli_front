@@ -6,38 +6,39 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import axios from 'axios'
-import Router from 'next/router'
+import { Router } from 'next/router'
+import { CurrentContext } from 'contexts/currentContext'
+import styled from 'styled-components'
+
+const EditIcon = styled.img`
+  width: 17px;
+  margin-left: 9px;
+  cursor: pointer;
+`
 
 const Products = () => {
+  const { products, removeProduct } = React.useContext(CurrentContext)
+
   const [data, setData] = React.useState([])
 
   const getData = async () => {
-    try {
-      const token = localStorage.getItem('accessToken')
-      // const response = await axios.get(`http://localhost:3000/category`, {}, { token })
-      // setData(response.data)
-    } catch (e) {
-      console.log('getData.error', e)
-    }
+    const token = localStorage.getItem('accessToken')
+    const response = await products(token)
+    setData(response)
   }
 
   React.useEffect(() => {
     getData()
   }, [])
 
-  const onCategoryUpdateClick = id => {
-    Router.push(`/super-admin/update/category?id=${id}`, `/super-admin/update/category?id=${id}`)
+  const onProductUpdateClick = id => {
+    Router.push(`/super-admin/update/product?id=${id}`)
   }
 
-  const onCategoryRemoveClick = async id => {
-    try {
-      const token = localStorage.getItem('accessToken')
-      await axios.delete(`http://localhost:3000/category/${id}`, {}, { token })
-      await getData()
-    } catch (e) {
-      console.log('getData.error', e)
-    }
+  const onProductRemoveClick = async id => {
+    const token = localStorage.getItem('accessToken')
+    await removeProduct(id, token)
+    await getData()
   }
 
   return (
@@ -47,9 +48,15 @@ const Products = () => {
           <TableRow>
             <TableCell>№</TableCell>
             <TableCell>Name</TableCell>
-            <TableCell align='right'></TableCell>
+            <TableCell>Name Ru</TableCell>
+            <TableCell>Name En</TableCell>
+            <TableCell>Description ua</TableCell>
+            <TableCell>Description Ru</TableCell>
+            <TableCell>Description En</TableCell>
+            <TableCell>Manteeriaal Ua</TableCell>
+            <TableCell>Manteeriaal Ru</TableCell>
+            <TableCell>Manteeriaal En</TableCell>
             <TableCell align='right'>Count Photo</TableCell>
-            <TableCell align='right' />
             <TableCell align='right' />
           </TableRow>
         </TableHead>
@@ -60,13 +67,18 @@ const Products = () => {
                 {row.id}
               </TableCell>
               <TableCell align='left'>{row.name}</TableCell>
-              <TableCell align='right'>{row.subcategory.length}</TableCell>
-              <TableCell align='right'>0</TableCell>
-              <TableCell align='right' onClick={() => onCategoryUpdateClick(row.id)}>
-                edit
-              </TableCell>
-              <TableCell align='right' onClick={() => onCategoryRemoveClick(row.id)}>
-                remove
+              <TableCell align='left'>{row.nameRu}</TableCell>
+              <TableCell align='left'>{row.nameEn}</TableCell>
+              <TableCell align='left'>{row.description}</TableCell>
+              <TableCell align='left'>{row.descriptionRus}</TableCell>
+              <TableCell align='left'>{row.descriptionEng}</TableCell>
+              <TableCell align='left'>{row.materials}</TableCell>
+              <TableCell align='left'>{row.materialsRus}</TableCell>
+              <TableCell align='left'>{row.materialsEng}</TableCell>
+              <TableCell align='right'>{row.photos.length}</TableCell>
+              <TableCell align='right'>
+                <EditIcon src='/static/pencil.svg' onClick={() => onProductUpdateClick(row.id)} />
+                <EditIcon src='/static/trash.svg' onClick={() => onProductRemoveClick(row.id)} />
               </TableCell>
             </TableRow>
           ))}

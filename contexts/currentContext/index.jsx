@@ -15,8 +15,8 @@ const CurrentProvider = ({ children }) => {
       'Content-Type': 'multipart/form-data'
     }
   }
-  // const link = 'http://localhost:3000/'
-  const link = 'https://afternoon-scrubland-24663.herokuapp.com/'
+  const link = 'http://localhost:3000/'
+  // const link = 'https://afternoon-scrubland-24663.herokuapp.com/'
   React.useEffect(() => {
     setLang(Cookies.get('lang') || 'ua')
   }, [Cookies.get('lang')])
@@ -117,9 +117,34 @@ const CurrentProvider = ({ children }) => {
     }
   }
 
-  const products = async () => {}
+  const products = async token => {
+    try {
+      const { data } = await axios.get(link + `products`, {}, { token })
+      return data
+    } catch (e) {
+      console.log('CurrentProvider.products', e)
+    }
+  }
 
-  const createProduct = async () => {}
+  const createProduct = async (assetIds, data) => {
+    try {
+      await post(link + `products/create`, {
+        ...omit(data, 'files'),
+        assetIds
+      })
+      Router.push('/super-admin/products')
+    } catch (e) {
+      console.log('CurrentProvider.createProduct', e)
+    }
+  }
+
+  const removeProduct = async (id, token) => {
+    try {
+      await axios.delete(link + `products/${id}`, {}, { token })
+    } catch (e) {
+      console.log('CurrentProvider.removeProduct', e)
+    }
+  }
 
   const uploadFile = async file => {
     try {
@@ -130,6 +155,16 @@ const CurrentProvider = ({ children }) => {
     }
   }
 
+  const uploadFiles = async files => {
+    try {
+      const { data } = await post('http://localhost:3000/assets/files', files, headerContent)
+
+      return data
+    } catch (e) {
+      console.log('CurrentProvider.uploadFiles', e)
+    }
+  }
+
   const onLogout = () => {
     localStorage.removeItem('accessToken')
     Router.push('/')
@@ -137,6 +172,7 @@ const CurrentProvider = ({ children }) => {
 
   const value = {
     onLangClick,
+    uploadFiles,
     currentLang,
     categories,
     subcategories,
@@ -150,6 +186,7 @@ const CurrentProvider = ({ children }) => {
     updateSubcategory,
     removeSubcategory,
     createProduct,
+    removeProduct,
     onLogout,
     link,
     uploadFile

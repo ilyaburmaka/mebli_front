@@ -30,6 +30,7 @@
     "dev": "next -p 3001",
     "build": "next build",
     "start": "PORT=8000 next start",
+    "heroku-postbuild": "npm run build",
     "deploy": "next build && next export"
   },
   "eslintConfig": {

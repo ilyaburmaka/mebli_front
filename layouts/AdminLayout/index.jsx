@@ -11,7 +11,6 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Router from 'next/router'
 import styled from 'styled-components'
 import { CurrentContext } from '../../contexts/currentContext'
-import { MenuItem } from '../../components/Header/Views'
 
 const CloseImage = styled.img`
   width: 15px;
@@ -19,6 +18,7 @@ const CloseImage = styled.img`
 
 const Lang = styled.img`
   width: 25px;
+  cursor: pointer;
   margin-right: 15px;
 `
 
